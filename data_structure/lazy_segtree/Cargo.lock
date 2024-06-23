@@ -3,13 +3,5 @@
 version = 3
 
 [[package]]
-name = "galois_field"
-version = "0.1.0"
-
-[[package]]
 name = "lazy_segtree"
-version = "0.1.0"
-
-[[package]]
-name = "procon-rust"
 version = "0.1.0"
