@@ -1,0 +1,17 @@
+[package]
+name = "procon-rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]
+name = "data_structure"
+path = "data_structure"
+
+[[bin]]
+name = "algebra"
+path = "algebra"
+
+[workspace]
+members = [ "data_structure/*", "algebra/*"]
