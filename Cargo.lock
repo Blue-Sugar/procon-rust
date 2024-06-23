@@ -11,5 +11,12 @@ name = "lazy_segtree"
 version = "0.1.0"
 
 [[package]]
+name = "pascal_triangle"
+version = "0.1.0"
+dependencies = [
+ "galois_field",
+]
+
+[[package]]
 name = "procon-rust"
 version = "0.1.0"
