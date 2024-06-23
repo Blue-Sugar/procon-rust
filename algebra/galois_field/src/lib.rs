@@ -3,7 +3,7 @@
 //! Define a struct [`GaloisField<P>`]
 //! 
 //! 
-use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
+use std::{iter::{Product, Sum}, ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign}};
 
 
 #[macro_export]
@@ -170,3 +170,23 @@ macro_rules! impl_from_unsigned {
     };
 }
 impl_from_unsigned!(u8, u16, u32, u64, usize);
+impl<const P: u64> Sum for GaloisField<P> {
+    fn sum<I: Iterator<Item = Self>>(iter: I) -> Self {
+        iter.fold(Self::new(0), |acc, x| acc + x)
+    }
+}
+impl<'a, const P: u64> Sum<&'a Self> for GaloisField<P> {
+    fn sum<I: Iterator<Item = &'a Self>>(iter: I) -> Self {
+        iter.copied().sum()
+    }
+}
+impl<const P: u64> Product for GaloisField<P> {
+    fn product<I: Iterator<Item = Self>>(iter: I) -> Self {
+        iter.fold(Self::new(1), |acc, x| acc * x)
+    }
+}
+impl<'a, const P: u64> Product<&'a Self> for GaloisField<P> {
+    fn product<I: Iterator<Item = &'a Self>>(iter: I) -> Self {
+        iter.copied().product()
+    }
+}
