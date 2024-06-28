@@ -4,7 +4,7 @@
 //! 
 //! 
 
-use std::ops::RangeBounds;
+use std::ops::{Index, RangeBounds};
 /// trait of Monoid which is for Segtree
 pub trait Monoid {
     /// Value is the set of Monoid
@@ -73,14 +73,6 @@ impl<M: Monoid> Segtree<M> {
         }
     }
 
-    /// Return the value at index `i`
-    pub fn get_at(&self, i: usize) -> M::Value 
-    where 
-        M::Value: Clone + Copy,
-    {
-        self.values[i + self.values.len() / 2]
-    }
-
     /// Return the value as a vector. $O(N \log N)$
     pub fn collect(&self) -> Vec<M::Value> 
     where 
@@ -95,6 +87,12 @@ where
 {
     fn from_iter<T: IntoIterator<Item = M::Value>>(iter: T) -> Self {
         Self::new(&iter.into_iter().collect::<Vec<_>>())
+    }
+}
+impl<M: Monoid> Index<usize> for Segtree<M> {
+    type Output = M::Value;
+    fn index(&self, index: usize) -> &Self::Output {
+        &self.values[index + self.values.len() / 2]
     }
 }
 fn open<R: RangeBounds<usize>>(range: R, n: usize) -> (usize, usize) {
