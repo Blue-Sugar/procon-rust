@@ -95,7 +95,7 @@ impl<M: MonoidWithMorphism> LazySegtree<M> {
         }
     }
 
-    /// folds a range. $O(\log N)$
+    /// Folds a range. $O(\log N)$
     pub fn fold<R: RangeBounds<usize>>(&mut self, range: R) -> M::Value {
         let n = self.morphisms.len() / 2;
         let (mut l, mut r) = open(range, n);
@@ -129,8 +129,14 @@ impl<M: MonoidWithMorphism> LazySegtree<M> {
         M::op(&left, &right)
     }
 
+    /// Update to `v` at the index `i`.
+    pub fn update_at(&mut self, i: usize, _v: M::Value) {
+        let _i = self.morphisms.len() / 2 + i;
+        unimplemented!()
+    }
+
     /// Returns the value at the index `i`. $O(\log N)$
-    pub fn get(&self, i: usize) -> M::Value 
+    pub fn get_at(&self, i: usize) -> M::Value 
     where  
         M::Value: Clone,
     {
@@ -148,7 +154,7 @@ impl<M: MonoidWithMorphism> LazySegtree<M> {
     where
         M::Value: Clone,
     {
-        (0..self.morphisms.len() / 2).map(|i| self.get(i)).collect()
+        (0..self.morphisms.len() / 2).map(|i| self.get_at(i)).collect()
     }
 
     fn push(&mut self, i: usize) {
