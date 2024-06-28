@@ -28,3 +28,7 @@ version = "0.1.0"
 [[package]]
 name = "segtree"
 version = "0.1.0"
+
+[[package]]
+name = "union_find"
+version = "0.1.0"
