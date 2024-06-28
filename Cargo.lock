@@ -20,3 +20,7 @@ dependencies = [
 [[package]]
 name = "procon-rust"
 version = "0.1.0"
+
+[[package]]
+name = "segtree"
+version = "0.1.0"
