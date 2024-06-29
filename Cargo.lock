@@ -34,5 +34,9 @@ name = "slope_trick"
 version = "0.1.0"
 
 [[package]]
+name = "trie_tree"
+version = "0.1.0"
+
+[[package]]
 name = "union_find"
 version = "0.1.0"
