@@ -1,21 +1,14 @@
-//!
-//! # SortedSet
-//! 
-//! Define a [`SortedSet`] and [`SortedMultiSet`]
-pub mod sorted_multi_set;
-#[allow(unused_imports)]
-use sorted_multi_set::SortedMultiSet;
 use superslice::Ext;
 /// const 
 pub const BUCKET_RATIO: usize = 16;
 /// const
 pub const SPLIT_RATIO: usize = 24;
 /// struct
-pub struct SortedSet<T> {
+pub struct SortedMultiSet<T> {
     n: usize,
     values: Vec<Vec<T>>,
 }
-impl<T> SortedSet<T>
+impl<T> SortedMultiSet<T>
 where 
     T: Clone + Copy + Eq + Ord,
 {
@@ -23,7 +16,6 @@ where
     pub fn new(values: &[T]) -> Self {
         let mut values = values.to_vec();
         values.sort();
-        values.dedup();
         let n = values.len();
         let bucket_size = (n as f64 / BUCKET_RATIO as f64).sqrt().ceil() as usize;
         let values = values.chunks(bucket_size)
@@ -55,16 +47,12 @@ where
     }
 
     /// Add `x`. If already exist return false, else add `x` and return true
-    pub fn add(&mut self, value: &T) -> bool {
+    pub fn add(&mut self, value: &T) {
         if self.n == 0 {
             self.values = vec![vec![*value]];
             self.n = 1;
-            return true;
         }
         let (mut chunk, index_chunk, index) = self.chunk_position(value);
-        if chunk.len() > 0 && index != chunk.len() && chunk[index] == *value {
-            return false;
-        }
         self.values[index_chunk].insert(index, *value);
         chunk.insert(index, *value);
         self.n += 1;
@@ -73,7 +61,6 @@ where
             self.values[index_chunk] = chunk[mid..].to_vec();
             self.values.insert(index_chunk, chunk[..mid].to_vec());
         }
-        true
     }
 
     /// Drop the value of `value`
