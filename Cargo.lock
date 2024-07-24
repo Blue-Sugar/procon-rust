@@ -3,7 +3,19 @@
 version = 3
 
 [[package]]
+name = "bellman_ford"
+version = "0.1.0"
+
+[[package]]
+name = "dijkstra"
+version = "0.1.0"
+
+[[package]]
 name = "eratosthenes"
+version = "0.1.0"
+
+[[package]]
+name = "euclid"
 version = "0.1.0"
 
 [[package]]
@@ -11,7 +23,19 @@ name = "fenwick_tree"
 version = "0.1.0"
 
 [[package]]
+name = "floyd_warshall"
+version = "0.1.0"
+
+[[package]]
 name = "galois_field"
+version = "0.1.0"
+
+[[package]]
+name = "interval_sieve"
+version = "0.1.0"
+
+[[package]]
+name = "kruskal"
 version = "0.1.0"
 
 [[package]]
@@ -21,12 +45,21 @@ version = "0.1.0"
 [[package]]
 name = "pascal_triangle"
 version = "0.1.0"
-dependencies = [
- "galois_field",
-]
+
+[[package]]
+name = "prim"
+version = "0.1.0"
+
+[[package]]
+name = "prime"
+version = "0.1.0"
 
 [[package]]
 name = "procon-rust"
+version = "0.1.0"
+
+[[package]]
+name = "repeated_squaring"
 version = "0.1.0"
 
 [[package]]

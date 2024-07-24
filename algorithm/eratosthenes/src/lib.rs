@@ -14,6 +14,7 @@ impl Erathosthenes {
             .map(|i| Some(i))
             .collect::<Vec<_>>();
         values[0] = None;
+        values[1] = None;
         for base in 2..=max_value {
             if values[base] != Some(base) {
                 continue;

@@ -14,4 +14,4 @@ name = "algebra"
 path = "algebra"
 
 [workspace]
-members = [ "data_structure/*", "algebra/*"]
+members = [ "data_structure/*", "algorithm/*" ]
